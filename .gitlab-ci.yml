@@ -1,0 +1,45 @@
+stages:
+- maven
+- docker
+- release
+
+cache:
+  untracked: true
+  key: "vrtlr-m2"
+  paths:
+  - m2
+
+build-jar:
+  stage: maven
+  image: harbor.cloudpowered.services/mcon-group-public/centos8-base:latest
+  tags:
+  - docker
+  script:
+  - sh scripts/build-maven.sh
+  only:
+  - master
+  artifacts:
+    paths:
+    - vrtlr-app/target/vrtlr-app.jar
+    expire_in: 20 mins
+
+build-docker:
+  stage: docker
+  image: harbor.cloudpowered.services/mcon-group-public/centos8-base:latest
+  tags:
+  - docker
+  script:
+  - sh scripts/build-docker.sh
+  only:
+  - master
+
+release:
+  stage: release
+  image: harbor.cloudpowered.services/mcon-group-public/centos8-base:latest
+  tags:
+  - docker
+  script:
+  - sh scripts/release.sh
+  only:
+  - master
+  when: manual

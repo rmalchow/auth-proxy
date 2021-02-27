@@ -1,0 +1,20 @@
+server.servlet.contextPath: /
+spring.http.encoding.charset: UTF-8
+spring.http.encoding.enabled: true
+spring.http.encoding.force: true
+spring.resources.cache.period: 1
+spring.thymeleaf.cache: false
+security.basic.enabled: false
+host: "http://127.0.0.1:8080/"
+spring.mvc.static-path-pattern: /**
+spring.resources.static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+zuul:
+  ignoredHeaders: []
+  ignoredPatterns:
+   - /__auth__/**
+  sensitiveHeaders: f[]]
+  host.socket-timeout-millis: 60000
+  routes:
+    static:
+      path: /**
+      url: http://${BACKEND_ADDRESS:192.168.71.220}:${BACKEND_ADDRESS:8096}/
