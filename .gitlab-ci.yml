@@ -5,7 +5,7 @@ stages:
 
 cache:
   untracked: true
-  key: "vrtlr-m2"
+  key: "auth-m2"
   paths:
   - m2
 
@@ -20,7 +20,7 @@ build-jar:
   - master
   artifacts:
     paths:
-    - vrtlr-app/target/vrtlr-app.jar
+    - auth-app/target/auth-app.jar
     expire_in: 20 mins
 
 build-docker:

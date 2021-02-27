@@ -1,11 +1,18 @@
-# vrtlr
+# AUTH
 
-- start_dev.sh im Root startet zwei docker run commands. 
-- einer zum kompilieren einer zum starten. (Code etc wird dabei vom host gemountet)
+this is an auth proxy. if your browser is coming in with a valid JWT token in a cookie, we pass the requests to the backend. if not, you get redirected to a login page.
 
-- das Jar wird ausgepackt und ein bisschen rumkopiert. 
-- dann läuft das ding mit vrtlr-impl/src/main/resources im classpath
+# general config
 
-- Da liegen die ordner templates und public.
-- Templates sind thymeleaf templates um das HTML zu rendern
-- Public ist quasi das docroot (für JS Dateien und bilder, also public/foo.png wird dann http://127.0.0.1:8080/foo.png)
+- BACKEND_URL - the URL of the backend. e.g. http://192.168.0.22:8080
+- HOST - the URL visible on the outside. e.g. https://foobar.example.com/   --- note that this _must_ include the trailing slash
+
+
+# authentication modules:
+
+- none so far, but planned are: 
+	- BEARER token:
+		- public key to verify JWT signed by someone else
+		- fixed API keys
+	- basic auth against ldap 
+	- login page agains
