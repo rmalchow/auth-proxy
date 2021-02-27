@@ -43,6 +43,7 @@ public class ProxyJwtPreFilter extends ZuulFilter {
 				}
 			}
 		}
+		log.info("no token found: redirecting ... ");
 		ctx.setSendZuulResponse(false);
         ctx.setResponseStatusCode(HttpStatus.SC_TEMPORARY_REDIRECT);
         r.setHeader("Location", host+"__auth__");
