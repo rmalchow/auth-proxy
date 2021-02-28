@@ -32,11 +32,9 @@ public class ProxyJwtPreFilter extends ZuulFilter {
 		HttpServletResponse r = ctx.getResponse();
 		if(q.getCookies()!=null) {
 			for(Cookie c : q.getCookies()) {
-				log.info(" == COOKIE "+c.getName());
 				if(c.getName().equals("__jwt__")) {
 					try {
 						String user = reader.readToken(c.getValue());
-						log.info("found user: "+user);
 						return null;
 					} catch (Exception e) {
 					}

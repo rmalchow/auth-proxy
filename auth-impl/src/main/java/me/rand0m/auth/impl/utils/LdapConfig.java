@@ -14,6 +14,8 @@ public class LdapConfig {
 	private String binduser;
 	private String bindpassword;
 
+	private String filter;
+
 	public String getBinduser() {
 		return binduser;
 	}
@@ -52,6 +54,14 @@ public class LdapConfig {
 
 	public void setBindpassword(String bindpassword) {
 		this.bindpassword = bindpassword;
+	}
+
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
 	}
 
 }

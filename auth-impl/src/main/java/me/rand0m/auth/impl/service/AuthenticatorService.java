@@ -1,4 +1,4 @@
-package me.rand0m.auth.impl.authenticators;
+package me.rand0m.auth.impl.service;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package me.rand0m.auth.impl;
+package me.rand0m.auth.impl.controllers;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mcg.jwt.KeyGenerator;
 import com.mcg.jwt.crypto.DefaultKeyGenerator;
 
-import me.rand0m.auth.impl.authenticators.AuthenticatorService;
+import me.rand0m.auth.impl.service.AuthenticatorService;
 
 @Controller
 @RequestMapping(value = "")
