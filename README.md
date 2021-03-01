@@ -5,7 +5,7 @@ this is a reverse proxy with authentication check based on zuul. it will check i
 To do full custom configuration, a authentication.yaml file is needed, in docker this would be:
 
 ```
-docker run -v path/to/application.yml:/app/application.yml [image]
+docker run -v path/to/application.yml:/app/application.yml rmalchow/auth
 ```
 
 #### docker image
@@ -13,6 +13,10 @@ docker run -v path/to/application.yml:/app/application.yml [image]
 the latest docker image is at:
 
 > harbor.rand0m.me/public/auth
+
+or on dockerhub
+
+> rmalchow/auth
 
 #### general config
 
@@ -85,15 +89,16 @@ ldap:
 
 #### ClientIpAuthenticator
 
-This authenticator looks at a x-forwarded-for header and checks it against a list of CIDR ranges
+This authenticator looks at a x-forwarded-for header and checks it against a list of CIDR ranges.
+
+*** not fully implemented yet ***
 
 ```
 clientIp:
    enabled: true
    forwardedForHeader: "X-FORWARDED-FOR"
-   base: o=foobar,dc=example.com
-   binduser: uid=binduser,ou=system
-   bindpassword: s3cr3t
-   filter: "(|(uid={{username}})(mail={{username}})(userPrincipalName={{username}}))"
+   cirds: 
+   - 192.168.0.0/8
+   - 10.0.0.0/24
 ```
 
