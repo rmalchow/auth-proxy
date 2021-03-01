@@ -1,4 +1,4 @@
-package me.rand0m.auth.impl;
+package me.rand0m.auth.impl.crypto;
 
 import java.util.Map;
 

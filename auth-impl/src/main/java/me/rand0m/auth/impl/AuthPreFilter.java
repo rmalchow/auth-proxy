@@ -1,6 +1,5 @@
 package me.rand0m.auth.impl;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,40 +10,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
+import me.rand0m.auth.impl.service.AuthenticatorService;
+
 @Configuration
-public class ProxyJwtPreFilter extends ZuulFilter {
+public class AuthPreFilter extends ZuulFilter {
 
-	private static Log log = LogFactory.getLog(ProxyJwtPreFilter.class);
+	private static Log log = LogFactory.getLog(AuthPreFilter.class);
 	
-	@Autowired
-	private UserTokenReader reader;
-
 	@Value(value = "${host:http://127.0.0.1:8080/}")
 	private String host;
 
+	@Autowired
+	private AuthenticatorService authenticatorService;
+	
 	public Object run() {
+		
+		WebMvcConfigurer wc;
+		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest q = ctx.getRequest();
 		HttpServletResponse r = ctx.getResponse();
-		if(q.getCookies()!=null) {
-			for(Cookie c : q.getCookies()) {
-				if(c.getName().equals("__jwt__")) {
-					try {
-						String user = reader.readToken(c.getValue());
-						return null;
-					} catch (Exception e) {
-					}
-				}
-			}
+		
+		String user = authenticatorService.authenticate(q);
+		
+		if(user==null) {
+			// not authenticated
+			ctx.setSendZuulResponse(false);
+	        ctx.setResponseStatusCode(HttpStatus.SC_TEMPORARY_REDIRECT);
+	        r.setHeader("Location", host+"__auth__");
 		}
-		log.info("no token found: redirecting ... ");
-		ctx.setSendZuulResponse(false);
-        ctx.setResponseStatusCode(HttpStatus.SC_TEMPORARY_REDIRECT);
-        r.setHeader("Location", host+"__auth__");
 		return null;
 	}
 
@@ -63,8 +62,8 @@ public class ProxyJwtPreFilter extends ZuulFilter {
 	}
 	
 	@Bean
-	public static ProxyJwtPreFilter jwtPreFilter() {
-		return new ProxyJwtPreFilter();
+	public static AuthPreFilter jwtPreFilter() {
+		return new AuthPreFilter();
 	}
 
 }

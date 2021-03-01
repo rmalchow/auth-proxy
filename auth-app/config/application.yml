@@ -9,7 +9,7 @@ zuul:
   ignoredHeaders: []
   ignoredPatterns:
    - /__auth__/**
-  sensitiveHeaders: f[]]
+  sensitiveHeaders: []
   host.socket-timeout-millis: 60000
   routes:
     static:

@@ -19,7 +19,7 @@
 		<springboot-maven.version>2.2.3.RELEASE</springboot-maven.version>
 		<springframework.ldap.version>2.3.1.RELEASE</springframework.ldap.version>
 
-		<spring-jwt.version>0.1.30</spring-jwt.version>
+		<spring-jwt.version>0.1.32</spring-jwt.version>
 
 		<commons-lang3.version>3.8.1</commons-lang3.version>
 		<commons-io.version>1.3.2</commons-io.version>
