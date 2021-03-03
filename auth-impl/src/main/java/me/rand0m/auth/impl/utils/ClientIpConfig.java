@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "clientIp")
+@ConfigurationProperties(prefix = "client-ip")
 public class ClientIpConfig {
 
 	private List<String> cidrs = new ArrayList<>();

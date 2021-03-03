@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "ldap")
+@ConfigurationProperties(prefix = "bearer-token")
 public class BearerTokenConfig {
 	
 	private List<String> allow;
