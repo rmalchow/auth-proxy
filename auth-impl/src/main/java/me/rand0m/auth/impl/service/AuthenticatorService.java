@@ -27,6 +27,7 @@ public class AuthenticatorService {
 	
 	public String authenticate(String username, String password) {
 		for(Authenticator a : authenticators) {
+			log.info("authenticator: "+a.getClass().getSimpleName());
 			try {
 				String user = a.authenticate(username, password);
 				if(user!=null) {

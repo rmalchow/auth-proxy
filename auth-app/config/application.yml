@@ -1,6 +1,6 @@
 server.servlet.contextPath: /
 spring.resources.cache.period: 1
-spring.thymeleaf.cache: false
+spring.thymeleaf.cache: true
 security.basic.enabled: false
 host: "${HOST:http://127.0.0.1:8080/}"
 spring.mvc.static-path-pattern: /**
@@ -15,3 +15,6 @@ zuul:
     static:
       path: /**
       url: "${BACKEND_URL:http://192.168.71.220:8096}/"
+web-ldap:
+  enabled: true
+  baseUrl: https://users.rand0m.me

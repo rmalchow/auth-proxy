@@ -1,0 +1,16 @@
+ingress:
+	host: foo.example.com
+	proto: https
+	port: 0
+backend:
+	servicename: fooservice
+	port: 3456
+auth:
+	ldap:
+		enabled: true
+	users:
+		enabled: true
+		access:
+			foouser: foopwhash
+			baruser: baarpwhash
+			
