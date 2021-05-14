@@ -18,6 +18,8 @@ zuul:
 web-ldap:
   enabled: true
   baseUrl: https://users.rand0m.me
+  groupIds:
+  - a617a78c-a179-40cf-b7a6-e4c6f11b8160
 bearer-token:
   enabled: true
   allow:

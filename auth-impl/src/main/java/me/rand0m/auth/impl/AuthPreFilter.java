@@ -35,7 +35,6 @@ public class AuthPreFilter extends 	ZuulFilter {
 		HttpServletRequest q = ctx.getRequest();
 		HttpServletResponse r = ctx.getResponse();
 		
-		log.info("authenticating request to: "+q.getRequestURI()+": "+this.hashCode());
 		String user = authenticatorService.authenticate(q);
 		
 		if(user==null) {

@@ -19,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import me.rand0m.auth.api.Authenticator;
 import me.rand0m.auth.impl.utils.WebLdapConfig;
 
@@ -42,7 +45,7 @@ public class WebLdapAuthenticator implements Authenticator {
 			nvps.add(new BasicNameValuePair("username", username));
 			nvps.add(new BasicNameValuePair("password", password));
 			if(config.getGroupIds()!=null && config.getGroupIds().size()>0) {
-				nvps.add(new BasicNameValuePair("groupIds", StringUtils.join(",",config.getGroupIds())));
+				nvps.add(new BasicNameValuePair("groupId", StringUtils.join(config.getGroupIds(),",")));
 			}
 			
 			URIBuilder u = new URIBuilder(config.getBaseUrl())
