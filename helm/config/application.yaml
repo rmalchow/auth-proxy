@@ -2,7 +2,7 @@ server.servlet.contextPath: /
 spring.resources.cache.period: 1
 spring.thymeleaf.cache: true
 security.basic.enabled: false
-host: "${PROTO:http://}${HOST:127.0.0.1}:8080/"
+host: "{{ .Values.ingress.proto | default "https" }}://{{ .Values.ingress.host }}/"
 spring.mvc.static-path-pattern: /**
 spring.resources.static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 zuul:
@@ -14,7 +14,5 @@ zuul:
   routes:
     static:
       path: /**
-      url: "${BACKEND_URL:http://192.168.71.220:8096}/"
-web-ldap:
-  enabled: true
-  baseUrl: https://users.rand0m.me
+      url: "http://{{ .Values.backend.servicename}}:{{ .Values.backend.port}}"
+{{ toYaml .Values.auth  }}

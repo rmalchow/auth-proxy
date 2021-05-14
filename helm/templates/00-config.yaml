@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-auth-config
+data:
+  application_yaml: {{ tpl (.Files.Get "config/application.yaml") . | b64enc | quote }}

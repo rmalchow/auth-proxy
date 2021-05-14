@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-auth-ingress
+spec:
+  ingressClassName: {{ .Values.ingress.ingressClassName | default "nginx"}}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+        - path: "/"
+          backend:
+            serviceName: "{{ .Release.Name }}-auth-service"
+            servicePort: 8080
+{{- if .Values.ingress.tls }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host }}
+    secretName: {{ .Values.ingress.tlsSecret }}
+{{- end }}

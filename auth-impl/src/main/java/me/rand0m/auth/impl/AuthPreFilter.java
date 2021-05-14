@@ -1,8 +1,5 @@
 package me.rand0m.auth.impl;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +18,7 @@ import com.netflix.zuul.context.RequestContext;
 import me.rand0m.auth.impl.service.AuthenticatorService;
 
 @Configuration
-public class AuthPreFilter extends ZuulFilter {
+public class AuthPreFilter extends 	ZuulFilter {
 
 	private static Log log = LogFactory.getLog(AuthPreFilter.class);
 	

@@ -1,16 +1,18 @@
 ingress:
-	host: foo.example.com
-	proto: https
-	port: 0
+  host: grafana.kube.rm
+  proto: https
+  port: 0
 backend:
-	servicename: fooservice
-	port: 3456
+  servicename: httpd
+  port: 80
 auth:
-	ldap:
-		enabled: true
-	users:
-		enabled: true
-		access:
-			foouser: foopwhash
-			baruser: baarpwhash
-			
+  web-ldap:
+    enabled: true
+    baseUrl: https://users.rand0m.me/
+  bearer-token:
+    enabled: true
+    allow:
+    - PhaCo4jeechoiGhah1oDeethithoh0ahraCeequeebahnaighaemae7Gato4ooqu
+    - Ohcah6wei2iay5Ahthiexeicheif9oa0bah8wughahphohVahf6Aihai5biDeeSe
+    - Ieril4ve0haa1dee3noh2zeilaec4aicool0Ieries1zuumieM6ooTeiSheerahi
+    - mae4ahyeiN0Huichaephairohv2pu3peimeed8aR1ibairie9UX5Aeg2Shaiqui3

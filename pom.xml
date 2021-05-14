@@ -13,11 +13,11 @@
 	</modules>
 	<properties>
 
-		<springboot.version>2.2.3.RELEASE</springboot.version>
-		<spring.cloud.version>Hoxton.SR3</spring.cloud.version>
-		<spring.cloud.netflix.version>2.2.2.RELEASE</spring.cloud.netflix.version>
-		<springboot-maven.version>2.2.3.RELEASE</springboot-maven.version>
-		<springframework.ldap.version>2.3.1.RELEASE</springframework.ldap.version>
+		<springboot.version>2.2.8.RELEASE</springboot.version>
+		<spring.cloud.version>2.2.8.RELEASE</spring.cloud.version>
+		<spring.cloud.netflix.version>2.2.8.RELEASE</spring.cloud.netflix.version>
+		<springboot-maven.version>2.4</springboot-maven.version>
+		<springframework.ldap.version>2.3.3.RELEASE</springframework.ldap.version>
 
 		<spring-jwt.version>0.1.32</spring-jwt.version>
 
@@ -115,11 +115,6 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-zuul</artifactId>
-				<version>${springboot.zuul.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring.cloud.version}</version>
 			</dependency>
@@ -132,13 +127,25 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring.cloud.version}</version>
+				<artifactId>spring-cloud-netflix-dependencies</artifactId>
+				<version>${spring.cloud.netflix.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+				<version>${spring.cloud.netflix.version}</version>
+			</dependency>
+			<!-- 
+			<dependency>
+				<groupId>com.netflix.zuul</groupId>
+				<artifactId>zuul-core</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			 -->
+			
 		</dependencies>
-
 	</dependencyManagement>
 	<dependencies>
 		<dependency>

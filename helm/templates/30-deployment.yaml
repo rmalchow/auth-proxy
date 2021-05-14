@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-auth-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "auth-app"
+      release: {{ .Release.Name | quote}}
+  template:
+    metadata:
+      labels:
+        app: "auth-app"
+        release: {{ .Release.Name | quote}}
+    spec:
+      containers:
+      - image: rmalchow/auth
+        imagePullPolicy: Always
+        name: {{ .Release.Name }}-auth-app
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name:  auth-config-volume
+          mountPath: /app/application.yml
+          subPath: application_yaml
+        resources:
+          limits:
+            cpu: 500m
+            memory: 300Mi
+          requests:
+            cpu: 200m
+            memory: 128Mi
+      volumes:
+      - name: auth-config-volume
+        secret:
+          secretName: {{ .Release.Name }}-auth-config
