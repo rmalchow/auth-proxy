@@ -8,7 +8,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -36,6 +35,7 @@ public class AuthPreFilter extends 	ZuulFilter {
 		HttpServletRequest q = ctx.getRequest();
 		HttpServletResponse r = ctx.getResponse();
 		
+		log.info("authenticating request to: "+q.getRequestURI()+": "+this.hashCode());
 		String user = authenticatorService.authenticate(q);
 		
 		if(user==null) {
@@ -61,9 +61,4 @@ public class AuthPreFilter extends 	ZuulFilter {
 	    return "pre";
 	}
 	
-	@Bean
-	public static AuthPreFilter jwtPreFilter() {
-		return new AuthPreFilter();
-	}
-
 }

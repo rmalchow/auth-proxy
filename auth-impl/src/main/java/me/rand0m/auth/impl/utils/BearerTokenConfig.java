@@ -10,11 +10,14 @@ import org.springframework.context.annotation.Configuration;
 public class BearerTokenConfig {
 	
 	private List<String> allow;
-	
-	
-	public boolean checkToken(String token) {
-		if(allow==null || allow.size()==0) return false;
-		return allow.contains(token);
+
+	public List<String> getAllow() {
+		return allow;
+	}
+
+
+	public void setAllow(List<String> allow) {
+		this.allow = allow;
 	}
 	
 

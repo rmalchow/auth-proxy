@@ -27,7 +27,7 @@ public class AuthenticatorService {
 	
 	public String authenticate(String username, String password) {
 		for(Authenticator a : authenticators) {
-			log.info("authenticator: "+a.getClass().getSimpleName());
+			log.info("authenticator (credentials): "+a.getClass().getSimpleName());
 			try {
 				String user = a.authenticate(username, password);
 				if(user!=null) {
@@ -43,6 +43,7 @@ public class AuthenticatorService {
 	
 	public String authenticate(HttpServletRequest request) {
 		for(Authenticator a : authenticators) {
+			log.info("authenticator (request): "+a.getClass().getSimpleName());
 			try {
 				String user = a.authenticate(request);
 				if(user!=null) {

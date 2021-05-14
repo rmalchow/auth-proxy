@@ -18,3 +18,7 @@ zuul:
 web-ldap:
   enabled: true
   baseUrl: https://users.rand0m.me
+bearer-token:
+  enabled: true
+  allow:
+  - banana  
