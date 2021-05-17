@@ -48,7 +48,9 @@ public class IndexController {
 		ModelAndView out = new ModelAndView("index");
 		out.addObject("password", password);
 		out.addObject("username", username);
+		out.addObject("error", false);
 		if(username!=null) {
+			out.addObject("error", true);
 			log.info("authenticating: "+username);
 			String s = authenticatorService.authenticate(username, password);
 			log.info("user is: "+s);
@@ -59,9 +61,8 @@ public class IndexController {
 				c.setMaxAge(60*60*24);
 				response.addCookie(c);
 				response.sendRedirect(host);
+				out.addObject("error", false);
 				return null;
-			} else {
-				out.addObject("hasError", true);
 			}
 		}
 		return out;

@@ -10,6 +10,9 @@
 					<div class="col-12">
 						<h2>Login</h2>
 					</div>
+					<div class="col-12" th:if="${error}">
+						<div class="alert alert-danger">Login failed. Please try again.</div>
+					</div>
 					<div class="col-ld-6 col-md-6 col-sd-12">
 						<div class="form-group">
 							<input name="username" class="form-control" th:value="${username}" autofocus placeholder="username">
