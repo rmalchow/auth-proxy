@@ -1,4 +1,4 @@
-# AUTH
+# Auth Proxy
 
 this is a reverse proxy with authentication check based on zuul. it will check incoming requests for authentication info, and, if none are found, redirect to a login page. If valid authentication information _is_ found, the request is passed through. 
 
@@ -8,19 +8,17 @@ To do full custom configuration, a authentication.yaml file is needed, in docker
 docker run -v path/to/application.yml:/app/application.yml rmalchow/auth
 ```
 
-#### docker image
+This works well with my embedded LDAP server - check it out at https://github.com/rmalchow/ldap
+
+#### Docker Image
 
 the latest docker image is at:
 
-> harbor.rand0m.me/public/auth
-
-or on dockerhub
-
 > rmalchow/auth
 
-#### general config
+#### General Config
 
-here is the core part of an example application yaml file:
+since the authentication part is a bit more complicated, the easiest way to configure this application is to mount the application file. here is the core part of an example application yaml file, you can add any authenticator you like to this:
 
 ```
 
@@ -51,6 +49,20 @@ zuul:
       path: /**
       url: "${BACKEND_URL:http://192.168.71.220:8096}/"
 ```
+
+#### LDAP Server API call 
+
+If you are using my LDAP server (https://github.com/rmalchow/ldap), then you may want to call it directly. The configuration is:
+
+```
+web-ldap:
+  enabled: true
+  baseUrl: https://ldap.example.com
+  groupIds:
+  - a617a78c-a179-40cf-b7a6-e4c6f11b8160
+```
+
+A user will have to be a member of ALL groups specified in "groupIds" for the authentication to succeed. an empty list means no restrictions on group memberships, only username and password are checked.
 
 #### Path Authenticator
 
