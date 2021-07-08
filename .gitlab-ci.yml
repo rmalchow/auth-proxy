@@ -23,15 +23,25 @@ build-jar:
     - auth-app/target/auth-app.jar
     expire_in: 20 mins
 
-build-docker:
+build-image-amd64:
   stage: docker
-  image: harbor.rand0m.me/public/centos8-base:latest
+  image: docker
+  only:
+  - master
   tags:
   - docker
   script:
   - sh scripts/build-docker.sh
+
+build-image-aarch64:
+  stage: docker
+  image: docker
   only:
   - master
+  tags:
+  - docker-aarch64
+  script:
+  - sh scripts/build-docker.sh
 
 release:
   stage: release
