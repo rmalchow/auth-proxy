@@ -1,7 +1,6 @@
 stages:
 - maven
 - docker
-- manifest
 - release
 
 cache:
@@ -33,27 +32,6 @@ build-image-amd64:
   - docker
   script:
   - sh scripts/build-docker.sh
-
-build-image-aarch64:
-  stage: docker
-  image: docker
-  only:
-  - master
-  tags:
-  - docker-aarch64
-  script:
-  - sh scripts/build-docker.sh
-
-build-manifest:
-  stage: manifest
-  image: docker
-  only:
-  - master
-  tags:
-  - docker
-  script:
-  - sh scripts/build-docker-manifest.sh
-
 
 
 release:
