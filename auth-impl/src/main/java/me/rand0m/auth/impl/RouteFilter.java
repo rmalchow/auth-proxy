@@ -8,6 +8,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,9 @@ import com.netflix.zuul.context.RequestContext;
 @Component
 @ConditionalOnProperty(name = "dynamic_target", havingValue = "true", matchIfMissing = false)
 public class RouteFilter extends ZuulFilter {
+
+	
+	private static Log log = LogFactory.getLog(RouteFilter.class);
 
 	@Value(value = "${host:http://127.0.0.1:8080/}")
 	private String host;
