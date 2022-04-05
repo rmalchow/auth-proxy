@@ -2,7 +2,9 @@ server.servlet.contextPath: /
 spring.resources.cache.period: 1
 spring.thymeleaf.cache: false
 security.basic.enabled: false
-host: "${PROTO:http://}${HOST:127.0.0.1}:8080/"
+host: "${PROTO:http://}${HOST:127.0.0.1}:8081/"
+server.port: 8081
+dynamic_target: true
 spring.mvc.static-path-pattern: /**
 spring.resources.static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 zuul:

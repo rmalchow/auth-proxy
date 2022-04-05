@@ -29,13 +29,9 @@ public class AuthPreFilter extends 	ZuulFilter {
 	
 	public Object run() {
 		
-		WebMvcConfigurer wc;
-		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest q = ctx.getRequest();
 		HttpServletResponse r = ctx.getResponse();
-		
-		
 		
 		String user = authenticatorService.authenticate(q);
 		
