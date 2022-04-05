@@ -42,16 +42,16 @@ public class RouteFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
 		HttpServletResponse response = context.getResponse();
-
-        String target = null;
         
         if(request.getParameter("___target___")!=null) {
+            String target = null;
         	target = request.getParameter("___target___");
 			Cookie c = new Cookie("___target___", target);
 			c.setHttpOnly(true);
 			c.setPath("/");
 			c.setMaxAge(60*60*24);
 			response.addCookie(c);
+			log.info("target set to: "+target);
 			try {
 				response.sendRedirect(host);
 			} catch (IOException e) {
